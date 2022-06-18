@@ -1,0 +1,29 @@
+
+O
+img/undraw_notebook_re_id0r.svg,6\9\6948a0d3746e9696b0f5a85a9628b9d9d85c8ed7
+O
+img/undraw_male_avatar_323b.svg,e\1\e10b796f4a1740886ed1ea25d4f6d2b330b27939
+F
+headerSpring/header.js,9\2\924ff580b0df756da054d45cecdf65149c3956f7
+A
+bodySprin/body.js,4\3\439509cc3412c2f5ecd03c1768ee078e0513d735
+B
+bodySprin/body.css,6\c\6c4a311992b25b9bb9ee3654914d582a58d83e37
+E
+loginSpring/login.css,c\4\c4aa52b405ff315ef58ec5a1acbafed1fac072c2
+D
+loginSpring/login.js,d\2\d2afee7d5a325248ce835f2d982da93537f63644
+G
+headerSpring/header.css,6\1\61771fe08ffb5a092d8bd0a377262bbd4abe9ffc
+B
+footer/footer.html,b\5\b52e50c74a9deda2cd975b385dff135d914d8c78
+H
+headerSpring/header.html,1\a\1a639038c3dccca4577f6bb668a8b7980b011461
+C
+bodySprin/body.html,6\4\64dcc67137d43a294ed79ead40db2941685cad08
+F
+loginSpring/login.html,7\6\76b9766dff062caa6ff5c7a61fbbea56aac46261
+A
+detail/detail.css,c\2\c230bb14631793992e998fabcad9f75024640e95
+B
+detail/detail.html,6\4\6420090d7d133603755ebee03300f6a0cceb1e2f
