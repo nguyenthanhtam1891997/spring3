@@ -1,0 +1,13 @@
+package com.example.backendspring3.service;
+
+import com.example.backendspring3.model.User;
+
+public interface IUserService {
+    User findByEmail(String email);
+
+    Boolean existsByUsername(String username);
+
+    Boolean existsByEmail(String email);
+
+    User save(User user);
+}
