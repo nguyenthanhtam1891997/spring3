@@ -15,7 +15,8 @@
         </div>
         <div>
           <ul class="header_top-links d-flex justify-content-between">
-            <li><a routerLink="/login"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
+            <li *ngIf="!userName"><a routerLink="/login"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
+            <li *ngIf="userName"><a href=""><i class="fa-solid fa-user-tie"></i> {{userName}}</a></li>
             <li><a href=""><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
             <li><a href=""><i class="fa-solid fa-cart-shopping"></i> Giỏ Hàng</a></li>
           </ul>

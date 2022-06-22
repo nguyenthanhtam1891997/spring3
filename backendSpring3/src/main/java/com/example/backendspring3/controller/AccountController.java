@@ -84,25 +84,14 @@ public class AccountController {
     }
 
 
-    @PostMapping("/loginAccount")
-    public ResponseEntity<Object> loginAccount(@Valid @RequestBody LoginForm loginForm) {
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginForm.getEmail(), loginForm.getPassword())
-        );
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String token = jwtProvider.createToken(authentication);
-        Map<String, String> tokenMap = new HashMap<>();
-        tokenMap.put("token", token);
 
-//        UserPrinciple userPrinciple = (UserPrinciple) authentication.getPrincipal();
-        return new ResponseEntity<>(tokenMap, HttpStatus.OK);
-    }
-    @PostMapping("/checkToken")
-    public ResponseEntity<Object> checkToken(@RequestBody String token){
+
+//    @PostMapping("/checkToken")
+//    public ResponseEntity<Object> checkToken(@RequestBody String token) {
 //        String token = jwtTokenFilter.getToken(request);
-        String email = jwtProvider.getEmailFromToken(token);
-        User user = userService.findByEmail(email);
-        System.out.println(user);
-        return null;
-    }
+//        String email = jwtProvider.getEmailFromToken(token);
+//        User user = userService.findByEmail(email);
+//        System.out.println(user);
+//        return null;
+//    }
 }

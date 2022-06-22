@@ -2,24 +2,24 @@
   <div class="container">
     <div class="row g-1">
       <div class="col-lg-5">
-        <img src="../../assets/img/undraw_notebook_re_id0r.svg" alt="" class="img-fluid">
+        <img src="../../../assets/img/undraw_notebook_re_id0r.svg" alt="" class="img-fluid">
       </div>
       <div class="col-lg-7 text-center py-5">
         <h1 class="animate__animated animate__tada animate__infinite">Đăng Nhập</h1>
-        <form>
+        <form [formGroup]="loginForm">
           <div class="form-row py-3 pt-5">
             <div class="offset-1 col-lg-10">
-              <input type="email" class="inp px-3" placeholder="Email">
+              <input type="email" class="inp px-3" placeholder="Email" formControlName="email">
             </div>
           </div>
           <div class="form-row py-3 pt-5">
             <div class="offset-1 col-lg-10">
-              <input type="password" class="inp px-3" placeholder="Mật khẩu">
+              <input type="password" class="inp px-3" placeholder="Mật khẩu" formControlName="password">
             </div>
           </div>
           <div class="form-row py-3 pt-5">
             <div class="offset-1 col-lg-10">
-              <button class="btn1">Đăng Nhập</button>
+              <button class="btn1" (click)="signIn()">Đăng Nhập</button>
             </div>
           </div>
         </form>
