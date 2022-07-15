@@ -1,5 +1,6 @@
 package com.example.backendspring3.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -14,17 +15,22 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String username;
+    private String userName;
 
+    @Column(unique = true)
     private String email;
 
     private String password;
 
+    @JsonBackReference
+    @OneToOne(mappedBy ="user")
+    private Customer customer;
 
     @Lob
     private String avatar;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+//    @JsonBackReference
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
@@ -34,17 +40,17 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String username, String email, String password, String avatar, List<Role> roles) {
+    public User(Long id, String userName, String email, String password, String avatar, List<Role> roles) {
         this.id = id;
-        this.username = username;
+        this.userName = userName;
         this.email = email;
         this.password = password;
         this.avatar = avatar;
         this.roles = roles;
     }
 
-    public User(String username, String email, String encode, List<Role> roleList) {
-        this.username = username;
+    public User(String userName, String email, String encode, List<Role> roleList) {
+        this.userName = userName;
         this.email = email;
         this.password = encode;
         this.roles = roleList;
@@ -59,12 +65,20 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public String getEmail() {

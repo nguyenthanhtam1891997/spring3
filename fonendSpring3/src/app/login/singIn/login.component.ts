@@ -38,6 +38,8 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', data.token);
         this.router.navigateByUrl('');
         this.appService.sendClickEvent();
+      },(error)=>{
+        console.log(error.error);
       });
     }
   }

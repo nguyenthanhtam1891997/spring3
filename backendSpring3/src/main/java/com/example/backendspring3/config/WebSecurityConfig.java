@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -34,22 +35,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new JwtTokenFilter();
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
-        auth.userDetailsService(userDetailService).passwordEncoder(passwordEncoder());
-
-    }
+     
 
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
+    //    @Bean
+//    @Override
+//    public AuthenticationManager authenticationManager() throws Exception {
+//        return super.authenticationManager();
+//    }
+    @Bean(BeanIds.AUTHENTICATION_MANAGER)
     @Override
-    public AuthenticationManager authenticationManager() throws Exception {
-        return super.authenticationManager();
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        // Get AuthenticationManager bean
+        return super.authenticationManagerBean();
     }
 
     @Override
@@ -58,15 +60,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/api/user/delete")
                 .hasAuthority("ROLE_ADMIN")
-                .antMatchers("/api/book/create", "/api/book/delete","/api/employee/**")
+                .antMatchers("/api/book/create", "/api/book/delete", "/api/employee/**")
                 .hasAuthority("ROLE_EMPLOYEE")
                 .antMatchers("**").permitAll()
                 .anyRequest().authenticated()
-                .and()
-                .rememberMe().userDetailsService(userDetailService)
                 .and().exceptionHandling()
                 .authenticationEntryPoint(jwtEntryPoint)
-                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .rememberMe().userDetailsService(userDetailService);
         http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
+    
+    
 }

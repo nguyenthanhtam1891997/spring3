@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
 
   loadUserName() {
     this.userName = localStorage.getItem('user');
-    console.log(this.userName);
+    // console.log(this.userName);
   }
 
 }

@@ -39,7 +39,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authenticationToken);
             }
         } catch (Exception e) {
-            logger.error("loi khi lay tokken");
+            logger.error("loi khi lay tokken",e);
         }
         filterChain.doFilter(request,response);
     }

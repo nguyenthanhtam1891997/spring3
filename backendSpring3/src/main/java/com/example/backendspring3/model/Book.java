@@ -29,6 +29,9 @@ public class Book {
     @Column(columnDefinition = "LONGTEXT")
     private String description;
 
+    @Column(columnDefinition = "LONGTEXT")
+    private String image;
+
     private Integer numberOfSale;
 
     @ManyToOne
@@ -44,7 +47,7 @@ public class Book {
     public Book() {
     }
 
-    public Book(Long id, String code, Integer quantity, Integer rest, String writer, String translator, String producer, int pages, String size, String date, Double price, Double promotion, String description, Integer numberOfSale, Category category, List<OderBook> oderBookList) {
+    public Book(Long id, String code, Integer quantity, Integer rest, String writer, String translator, String producer, int pages, String size, String date, Double price, Double promotion, String description, String image, Integer numberOfSale, Category category, List<OderBook> oderBookList) {
         this.id = id;
         this.code = code;
         this.quantity = quantity;
@@ -58,6 +61,7 @@ public class Book {
         this.price = price;
         this.promotion = promotion;
         this.description = description;
+        this.image = image;
         this.numberOfSale = numberOfSale;
         this.category = category;
         this.oderBookList = oderBookList;
@@ -189,5 +193,13 @@ public class Book {
 
     public void setOderBookList(List<OderBook> oderBookList) {
         this.oderBookList = oderBookList;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

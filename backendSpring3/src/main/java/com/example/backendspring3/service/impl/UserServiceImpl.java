@@ -17,8 +17,8 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public Boolean existsByUsername(String username) {
-        return userRepository.existsByUsername(username);
+    public Boolean existsByUserName(String userName) {
+        return userRepository.existsByUserName(userName);
     }
 
     @Override

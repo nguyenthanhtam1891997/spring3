@@ -31,7 +31,6 @@ public class JwtProvider {
         try {
             Jwts.parser().setSigningKey(jwtKey).parseClaimsJws(token);
             return true;
-
         } catch (SignatureException e) {
             logger.error("token khoong hop le");
         } catch (UnsupportedJwtException e) {

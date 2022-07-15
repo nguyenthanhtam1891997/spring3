@@ -1,5 +1,7 @@
 package com.example.backendspring3.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,6 +15,7 @@ public class OderBook {
     private String timeOder;
 
     private Double sumPrice;
+
 
     @ManyToOne
     @JoinColumn(name = "customer_id",referencedColumnName = "id")

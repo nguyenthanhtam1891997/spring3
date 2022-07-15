@@ -16,9 +16,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -60,7 +63,7 @@ public class AccountController {
     public ResponseEntity<Object> createAccount(@Valid @RequestBody SignUpForm signUpForm) {
         mapError.clear();
         mapSuccess.clear();
-        if (userService.existsByUsername(signUpForm.getUsername())) {
+        if (userService.existsByUserName(signUpForm.getUsername())) {
             mapError.put(MESSAGE, "tên user bị trùng");
             return new ResponseEntity<>(mapError, HttpStatus.BAD_REQUEST);
         } else if (userService.existsByEmail(signUpForm.getEmail())) {
@@ -83,15 +86,26 @@ public class AccountController {
         }
     }
 
+    @PostMapping("/loginAccount")
+    public ResponseEntity<Object> loginAccount(@Valid @RequestBody LoginForm loginForm) {
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginForm.getEmail(), loginForm.getPassword())
+        );
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String token = jwtProvider.createToken(authentication);
+//        Map<String, String> tokenMap = new HashMap<>();
+//        tokenMap.put("token", token);
+        UserPrinciple userPrinciple = (UserPrinciple) authentication.getPrincipal();
+        Token token1 = new Token(userPrinciple.getUser().getUserName(), token);
+        return new ResponseEntity<>(token1, HttpStatus.OK);
+    }
 
 
+    //    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/delet")
+    public ResponseEntity<?> getListBook() {
 
-//    @PostMapping("/checkToken")
-//    public ResponseEntity<Object> checkToken(@RequestBody String token) {
-//        String token = jwtTokenFilter.getToken(request);
-//        String email = jwtProvider.getEmailFromToken(token);
-//        User user = userService.findByEmail(email);
-//        System.out.println(user);
-//        return null;
-//    }
+        System.out.println("12313213213");
+        return new ResponseEntity<>("21313112", HttpStatus.OK);
+    }
 }

@@ -1,6 +1,9 @@
 package com.example.backendspring3.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "roles")
@@ -11,6 +14,18 @@ public class Role {
 
     @Enumerated(EnumType.STRING)
     private RoleName role;
+
+    @JsonBackReference
+    @ManyToMany(mappedBy = "roles")
+    Set<User> users;
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
 
     public Role() {
     }

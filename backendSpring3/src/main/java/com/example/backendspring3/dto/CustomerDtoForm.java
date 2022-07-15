@@ -1,7 +1,12 @@
 package com.example.backendspring3.dto;
 
+import com.example.backendspring3.validation.EmailValidator;
+
 public class CustomerDtoForm {
-    private String username;
+
+    private String userName;
+
+    @EmailValidator
     private String email;
     private String password;
 
@@ -11,20 +16,20 @@ public class CustomerDtoForm {
     public CustomerDtoForm() {
     }
 
-    public CustomerDtoForm(String username, String email, String password, String address, String phone) {
-        this.username = username;
+    public CustomerDtoForm(String userName, String email, String password, String address, String phone) {
+        this.userName = userName;
         this.email = email;
         this.password = password;
         this.address = address;
         this.phone = phone;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getEmail() {

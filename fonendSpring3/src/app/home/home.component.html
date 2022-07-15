@@ -16,8 +16,12 @@
           <li class="category-item">
             <a href="" class="category-item_link">Sách Giáo Khoa</a>
           </li>
+          <li class="category-item">
+            <a   href="" (click)="checkLogin()" class="category-item_link">Quản Lý Sách</a>
+          </li>
         </ul>
       </nav>
+
     </div>
     <div class="col-md-10 col-lg-10 col-sm-10 col-10">
       <div class="home-filter d-flex justify-content-between">
@@ -26,7 +30,7 @@
           <button type="button" class="btn btn-outline-primary me-2">Phổ Biến</button>
           <button type="button" class="btn btn-outline-primary me-2 ">Mới Nhất</button>
           <button type="button" class="btn btn-outline-primary me-2">Bán Chạy</button>
-          <div class="form-group">
+          <div class="form-group me-2">
             <select class="form-control" name="" id="">
               <option>--Giá--</option>
               <option>Ưu Đãi</option>
@@ -34,9 +38,15 @@
               <option>Mã Giảm Giá</option>
             </select>
           </div>
+
         </div>
-        <div class="paginate">
-          phân trang
+        <div class="paginate d-flex justify-content-between">
+
+            <div class="input-group">
+              <a class="input-group-text"><i class="fa-solid fa-book-bookmark"></i></a>
+              <input readonly type="text" class="form-control" placeholder="Tìm Kiếm">
+            </div>
+
         </div>
       </div>
       <div class="home-product">

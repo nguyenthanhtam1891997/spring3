@@ -20,6 +20,7 @@ public class Customer {
     @OneToMany(mappedBy = "customer")
     private List<OderBook> oderBookList;
 
+//    @JsonBackReference
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
